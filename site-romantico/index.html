@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Isabela ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(#f6b5ee,#ab5eba,#4e1f6b);
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.estrelas{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+animation:brilho 8s infinite;
+}
+
+@keyframes brilho{
+0%{opacity:0.4}
+50%{opacity:1}
+100%{opacity:0.4}
+}
+
+.container{
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:20px;
+text-align:center;
+width:90%;
+max-width:400px;
+}
+
+h1{
+margin-top:0;
+}
+
+.foto{
+width:100%;
+border-radius:10px;
+background:white;
+padding:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
+transform:rotate(-2deg);
+}
+
+button{
+margin-top:10px;
+padding:12px 20px;
+border:none;
+border-radius:25px;
+background:#ff4b6e;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+
+#contador{
+margin-top:10px;
+font-size:14px;
+}
+
+.nome-animado{
+position:fixed;
+top:10%;
+width:100%;
+text-align:center;
+font-size:40px;
+font-weight:bold;
+color:white;
+text-shadow:
+0 0 10px #fff,
+0 0 20px #ff9df5,
+0 0 40px #ff4b6e;
+animation:brilharNome 3s infinite;
+}
+
+@keyframes brilharNome{
+0%{opacity:0.7}
+50%{opacity:1}
+100%{opacity:0.7}
+}
+
+.carta{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(111, 69, 121, 0.7);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.carta-box{
+background:white;
+color:#333;
+padding:25px;
+border-radius:20px;
+max-width:400px;
+text-align:center;
+}
+
+.petala{
+position:fixed;
+top:-10px;
+font-size:20px;
+animation:cair linear;
+}
+
+@keyframes cair{
+0%{transform:translateY(-10px)}
+100%{transform:translateY(110vh)}
+}
+
+@keyframes subir{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-80px);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="estrelas"></div>
+
+<div class="nome-animado">
+Isabela ❤️
+</div>
+
+<div class="container">
+
+<h1>Eu & Isabela ❤️</h1>
+
+<p>Feliz Dia da Mulher, meu amor</p>
+
+<img src="foto.jpeg" class="foto">
+
+<p id="contador"></p>
+
+<button onclick="abrirCarta()">💌 Abrir carta</button>
+
+</div>
+
+<div class="carta" id="carta">
+
+<div class="carta-box">
+
+<h2>Para Minha estrelinha⭐🌟❤️</h2>
+
+<p>
+Isabela,
+
+Desde que você entrou na minha vida tudo mudou para melhor.
+Seu sorriso ilumina meus dias e eu não me imagino sem você.
+
+Sou muito grato por ter você comigo.
+Prometo sempre cuidar de você e do nosso amor🌹❤️🌷
+Sempre vou te amar e sempre estarei com você pra tudo nessa vida.
+Eu te amo muito minha fofuxinha. ❤️
+</p>
+
+<button onclick="fecharCarta()">Fechar</button>
+
+</div>
+
+</div>
+
+<script>
+
+const dataInicio = new Date("2024-05-10")
+
+function atualizarContador(){
+
+const hoje = new Date()
+const diff = hoje - dataInicio
+const dias = Math.floor(diff/(1000*60*60*24))
+
+document.getElementById("contador").innerHTML =
+"Estamos juntos há "+dias+" dias ❤️"
+
+}
+
+setInterval(atualizarContador,1000)
+atualizarContador()
+
+function abrirCarta(){
+document.getElementById("carta").style.display="flex"
+}
+
+function fecharCarta(){
+document.getElementById("carta").style.display="none"
+}
+
+function criarPetala(){
+
+const p = document.createElement("div")
+
+p.innerHTML="🌹"
+
+p.className="petala"
+
+p.style.left=Math.random()*100+"vw"
+
+p.style.animationDuration=(Math.random()*5+5)+"s"
+
+document.body.appendChild(p)
+
+setTimeout(()=>{
+p.remove()
+},10000)
+
+}
+
+setInterval(criarPetala,400)
+
+document.addEventListener("click",function(e){
+
+const coracao=document.createElement("div")
+
+coracao.innerHTML="❤️"
+
+coracao.style.position="fixed"
+coracao.style.left=e.clientX+"px"
+coracao.style.top=e.clientY+"px"
+coracao.style.fontSize="20px"
+coracao.style.animation="subir 1s forwards"
+
+document.body.appendChild(coracao)
+
+setTimeout(()=>{
+coracao.remove()
+},1000)
+
+})
+
+</script>
+
+</body>
+</html>
